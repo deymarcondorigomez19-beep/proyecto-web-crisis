@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Crisis — Abastecimiento y Consumo Familiar</title>
+    <meta name="description" content="Herramienta educativa para simular el impacto de bloqueos, escasez e inflación en Bolivia.">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="js/script.js" defer></script>
+</head>
+<body>
+
+    <!-- ============================
+         NAVEGACIÓN
+    ============================= -->
+    <header>
+        <nav>
+            <div class="logo">SimuladorCrisis</div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#contexto">Contexto</a></li>
+                <li><a href="#simuladores">Simuladores</a></li>
+                <li><a href="#casos">Casos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- ============================
+             HERO
+        ============================= -->
+        <section id="inicio" class="hero">
+            <div class="hero-content">
+                <div class="hero-etiqueta">Herramienta educativa · Bolivia 2026</div>
+                <h1>
+                    Simulador de
+                    <span>Abastecimiento</span>
+                </h1>
+                <p>Visualiza cómo los bloqueos, la escasez y la inflación impactan directamente la economía y logística del día a día.</p>
+                <a href="#simuladores" class="btn-primary">Empezar a simular</a>
+            </div>
+        </section>
+
+        <!-- ============================
+             CONTEXTO
+        ============================= -->
+        <section id="contexto">
+            <div class="contenedor">
+                <div class="divisor">
+                    <span class="divisor-label">Contexto del problema</span>
+                </div>
+                <div class="contexto-grid">
+                    <div class="contexto-texto">
+                        <h2 class="seccion-titulo">¿Por qué <span>simular</span> la crisis?</h2>
+                        <p class="seccion-subtitulo">Transformar problemas reales en modelos matemáticos permite tomar mejores decisiones.</p>
+                        <p>En el contexto actual, las familias bolivianas enfrentan retos diarios: escasez de carburantes, precios en alza y presupuestos que no alcanzan. Esta aplicación permite representar matemáticamente tres problemas clave y visualizar sus efectos de forma concreta.</p>
+                    </div>
+                    <div class="contexto-stats">
+                        <div class="stat-card animar-tarjeta">
+                            <div class="stat-numero">3</div>
+                            <div class="stat-etiqueta">Simuladores activos</div>
+                        </div>
+                        <div class="stat-card animar-tarjeta">
+                            <div class="stat-numero">⛽</div>
+                            <div class="stat-etiqueta">Carburantes</div>
+                        </div>
+                        <div class="stat-card animar-tarjeta">
+                            <div class="stat-numero">🛒</div>
+                            <div class="stat-etiqueta">Precios de alimentos</div>
+                        </div>
+                        <div class="stat-card animar-tarjeta">
+                            <div class="stat-numero">💰</div>
+                            <div class="stat-etiqueta">Presupuesto familiar</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================
+             SIMULADORES
+        ============================= -->
+        <section id="simuladores">
+            <div class="contenedor">
+                <div class="divisor">
+                    <span class="divisor-label">Simuladores interactivos</span>
+                </div>
+                <h2 class="seccion-titulo">Calcula el <span>impacto</span></h2>
+                <p class="seccion-subtitulo">Ingresa los datos y obtén resultados inmediatos con análisis de estado.</p>
+
+                <div class="grid-simuladores">
+
+                    <!-- === SIMULADOR A: CARBURANTES === -->
+                    <article class="tarjeta-simulador animar-tarjeta">
+                        <div class="simulador-header">
+                            <div class="simulador-header-texto">
+                                <h3>Abastecimiento de Carburantes</h3>
+                                <p>Calcula cuántos días durará el combustible en la estación de servicio antes de llegar al nivel crítico.</p>
+                            </div>
+                            <span class="simulador-badge badge-carburante">⛽ Simulador A</span>
+                        </div>
+                        <div class="simulador-cuerpo">
+                            <div class="simulador-form">
+                                <form id="form-carburante" novalidate>
+                                    <div class="grupo-input">
+                                        <label for="reserva-inicial">Reserva inicial (litros)</label>
+                                        <input type="number" id="reserva-inicial" placeholder="ej. 10000" required min="0">
+                                    </div>
+                                    <div class="grupo-input">
+                                        <label for="consumo-diario">Consumo diario estimado (litros)</label>
+                                        <input type="number" id="consumo-diario" placeholder="ej. 1200" required min="0">
+                                    </div>
+                                    <div class="grupo-input">
+                                        <label for="reabastecimiento">Reabastecimiento diario (litros)</label>
+                                        <input type="number" id="reabastecimiento" placeholder="ej. 300" required min="0">
+                                    </div>
+                                    <div class="grupo-input">
+                                        <label for="nivel-critico">Nivel crítico de alerta (litros)</label>
+                                        <input type="number" id="nivel-critico" placeholder="ej. 2000" required min="0">
+                                    </div>
+                                    <div class="botones-form">
+                                        <button type="submit" class="btn-calcular">Calcular reserva</button>
+                                        <button type="button" class="btn-limpiar" onclick="limpiarFormulario('form-carburante', 'resultado-carburante')">Limpiar</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="simulador-resultado-area">
+                                <div id="resultado-carburante-placeholder" class="resultado-placeholder">
+                                    <div class="placeholder-icono">⛽</div>
+                                    <p>Ingresa los datos para calcular</p>
+                                </div>
+                                <div id="resultado-carburante" class="caja-resultado oculto"></div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- === SIMULADOR B: PRECIOS === -->
+                    <article class="tarjeta-simulador animar-tarjeta">
+                        <div class="simulador-header">
+                            <div class="simulador-header-texto">
+                                <h3>Incremento de Precios</h3>
+                                <p>Descubre cuánto más estás gastando por la subida de precios de los alimentos de la canasta básica.</p>
+                            </div>
+                            <span class="simulador-badge badge-precios">🛒 Simulador B</span>
+                        </div>
+                        <div class="simulador-cuerpo">
+                            <div class="simulador-form">
+                                <form id="form-precios" novalidate>
+                                    <div class="grupo-input">
+                                        <label for="producto-nombre">Producto a analizar</label>
+                                        <input type="text" id="producto-nombre" placeholder="ej. Arroz, Aceite, Azúcar..." required>
+                                    </div>
+                                    <div class="grupo-input">
+                                        <label for="precio-anterior">Precio anterior (Bs)</label>
+                                        <input type="number" id="precio-anterior" placeholder="ej. 8.00" required min="0.1" step="0.1">
+                                    </div>
+                                    <div class="grupo-input">
+                                        <label for="precio-actual">Precio actual (Bs)</label>
+                                        <input type="number" id="precio-actual" placeholder="ej. 11.00" required min="0.1" step="0.1">
+                                    </div>
+                                    <div class="grupo-input">
+                                        <label for="cantidad-mes">Cantidad mensual consumida</label>
+                                        <input type="number" id="cantidad-mes" placeholder="ej. 10" required min="1">
+                                    </div>
+                                    <div class="botones-form">
+                                        <button type="submit" class="btn-calcular">Calcular impacto</button>
+                                        <button type="button" class="btn-limpiar" onclick="limpiarFormulario('form-precios', 'resultado-precios')">Limpiar</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="simulador-resultado-area">
+                                <div id="resultado-precios-placeholder" class="resultado-placeholder">
+                                    <div class="placeholder-icono">🛒</div>
+                                    <p>Ingresa los datos para calcular</p>
+                                </div>
+                                <div id="resultado-precios" class="caja-resultado oculto"></div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- === SIMULADOR D: PRESUPUESTO === -->
+                    <article class="tarjeta-simulador animar-tarjeta">
+                        <div class="simulador-header">
+                            <div class="simulador-header-texto">
+                                <h3>Presupuesto Familiar</h3>
+                                <p>Verifica si el dinero disponible alcanza para cubrir la compra planificada del mes.</p>
+                            </div>
+                            <span class="simulador-badge badge-presupuesto">💰 Simulador D</span>
+                        </div>
+                        <div class="simulador-cuerpo">
+                            <div class="simulador-form">
+                                <form id="form-presupuesto" novalidate>
+                                    <div class="grupo-input">
+                                        <label for="presupuesto-total">Presupuesto disponible (Bs)</label>
+                                        <input type="number" id="presupuesto-total" placeholder="ej. 500" required min="0">
+                                    </div>
+                                    <div class="grupo-input">
+                                        <label for="costo-compra">Costo total de la compra (Bs)</label>
+                                        <input type="number" id="costo-compra" placeholder="ej. 580" required min="0">
+                                    </div>
+                                    <div class="botones-form">
+                                        <button type="submit" class="btn-calcular">Verificar presupuesto</button>
+                                        <button type="button" class="btn-limpiar" onclick="limpiarFormulario('form-presupuesto', 'resultado-presupuesto')">Limpiar</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="simulador-resultado-area">
+                                <div id="resultado-presupuesto-placeholder" class="resultado-placeholder">
+                                    <div class="placeholder-icono">💰</div>
+                                    <p>Ingresa los datos para calcular</p>
+                                </div>
+                                <div id="resultado-presupuesto" class="caja-resultado oculto"></div>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================
+             CASOS DE PRUEBA
+        ============================= -->
+        <section id="casos">
+            <div class="contenedor">
+                <div class="divisor">
+                    <span class="divisor-label">Casos de estudio</span>
+                </div>
+                <h2 class="seccion-titulo">Casos para <span>probar</span></h2>
+                <p class="seccion-subtitulo">Usa estos datos reales para explorar los simuladores.</p>
+
+                <div class="grid-casos">
+                    <div class="tarjeta-caso animar-tarjeta">
+                        <img src="img/gas.jpg" alt="Fila en gasolinera" class="caso-imagen">
+                        <div class="caso-cuerpo">
+                            <div class="caso-numero">Caso 01 — Carburante</div>
+                            <h4>Estación de servicio en crisis</h4>
+                            <ul>
+                                <li>Reserva inicial: 10,000 L</li>
+                                <li>Consumo diario: 1,200 L/día</li>
+                                <li>Reabastecimiento: 300 L/día</li>
+                                <li>Nivel crítico: 2,000 L</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="tarjeta-caso animar-tarjeta">
+                        <img src="img/mercado.jpg" alt="Mercado con precios altos" class="caso-imagen">
+                        <div class="caso-cuerpo">
+                            <div class="caso-numero">Caso 02 — Alimentos</div>
+                            <h4>Arroz: impacto mensual</h4>
+                            <ul>
+                                <li>Producto: Arroz</li>
+                                <li>Precio anterior: 8 Bs</li>
+                                <li>Precio actual: 11 Bs</li>
+                                <li>Consumo: 10 unidades/mes</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="tarjeta-caso animar-tarjeta">
+                        <img src="img/canasta.jpg" alt="Familia calculando gastos" class="caso-imagen">
+                        <div class="caso-cuerpo">
+                            <div class="caso-numero">Caso 03 — Presupuesto</div>
+                            <h4>Compra mensual familiar</h4>
+                            <ul>
+                                <li>Presupuesto: 500 Bs</li>
+                                <li>Costo estimado: 580 Bs</li>
+                                <li>Déficit: 80 Bs</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================
+             CONCLUSIONES
+        ============================= -->
+        <section id="conclusiones">
+            <div class="contenedor">
+                <div class="divisor">
+                    <span class="divisor-label">Conclusiones</span>
+                </div>
+                <div class="conclusiones-inner">
+                    <h2 class="seccion-titulo">Matemática <span>aplicada</span></h2>
+                    <div class="cita-decorativa">
+                        "Transformar un problema en un modelo es el primer paso para resolverlo."
+                    </div>
+                    <p>Este simulador demuestra que con cálculos simples podemos visualizar cómo variables externas —bloqueos, inflación, desabastecimiento— impactan directamente en la economía y logística familiar. Modelar matemáticamente estos problemas nos permite tomar decisiones más informadas en tiempos de crisis.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-marca">SimuladorCrisis</div>
+            <div class="footer-info">
+                <div>Desafío Final — Programación Web I</div>
+                <div>Desarrollado por: [Tu Nombre] · Gestión 2026</div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
