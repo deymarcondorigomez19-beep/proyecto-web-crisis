@@ -27,13 +27,12 @@ Cada simulador está respaldado por un modelo matemático explícito con fórmul
 ```
 simulador-crisis/
 │
-├── index.html              # Página principal (toda la app en un solo HTML)
-│
+├── index.html              
 ├── css/
-│   └── style.css           # Estilos completos + validación + matemática aplicada
+│   └── style.css           
 │
 ├── js/
-│   └── script.js           # Lógica de simuladores, validación y animaciones
+│   └── script.js           
 │
 └── img/
     ├── gas.jpg             # Imagen caso 01 — carburantes
